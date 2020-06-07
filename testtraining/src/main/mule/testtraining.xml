@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="220aec41-2bb0-48c2-9e62-91e378e8d0d6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="testtrainingFlow" doc:id="6fc271c8-aac4-4178-88bf-942d349d5259" >
+		<http:listener doc:name="Listener" doc:id="a796325f-f55c-4f30-8ce0-85ad80ecc99c" config-ref="HTTP_Listener_config" path="/api/testtraining"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6811e279-0efc-4c85-8ebd-1beb82bdb370" message="this is start of process"/>
+		<set-variable value="sudeep" doc:name="Set Variable" doc:id="5e679abd-245c-4ff7-9007-b4aee8f486ad" variableName="SudeepTesting"/>
+		<set-payload value="#[vars.SudeepTesting]" doc:name="Set Payload" doc:id="c428ef3f-3e58-4214-88c9-eadc8f104882" />
+		<logger level="INFO" doc:name="Logger" doc:id="48a4ef31-e001-4b9e-a024-2de0baf6d767" message="this is final payload and end"/>
+	</flow>
+</mule>
